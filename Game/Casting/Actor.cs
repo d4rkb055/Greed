@@ -141,7 +141,7 @@ namespace Unit04.Game.Casting
             }
             this.text = text;
         }
-
+        
         /// <summary>
         /// Sets the actor's velocity to the given value.
         /// </summary>
