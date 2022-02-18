@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Greed.Game.Casting;
 using Greed.Game.Services;
-using System;
+
 
 
 namespace Greed.Game.Directing
@@ -72,25 +73,25 @@ namespace Greed.Game.Directing
         }
 
         /// <summary>
-        /// Gets directional input from the keyboard and applies it to the robot.
+        /// Gets directional input from the keyboard and applies it to the greedyBoy.
         /// </summary>
         /// <param name="cast">The given cast.</param>
         private void GetInputs(Cast cast)
         {
-            Actor robot = cast.GetFirstActor("robot");
+            Actor greedyBoy = cast.GetFirstActor("greedyBoy");
             Point velocity = keyboardService.GetDirection();
-            robot.SetVelocity(velocity);     
+            greedyBoy.SetVelocity(velocity);     
         }
 
         /// <summary>
-        /// Updates the robot's position and resolves any collisions with artifacts.
+        /// Updates the greedyBoy's position and resolves any collisions with artifacts.
         /// </summary>
         /// <param name="cast">The given cast.</param>
         private void DoUpdates(Cast cast)
         {
             AddNewObjects(cast);
             Actor banner = cast.GetFirstActor("banner");
-            Actor greedyBoy = cast.GetFirstActor("robot");
+            Actor greedyBoy = cast.GetFirstActor("greedyBoy");
             List<Actor> fallingObjects = cast.GetActors("fallingObjects");
 
             banner.SetText($"Score: ");
