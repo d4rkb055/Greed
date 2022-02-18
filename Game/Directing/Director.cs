@@ -17,8 +17,8 @@ namespace Unit04.Game.Directing
         private KeyboardService keyboardService = null;
         private VideoService videoService = null;
 
-        private int MAX_FALLING_ROCKS = 20;
-        private int MAX_FALLING_GEMS = 10;
+        private int MAX_FALLING_ROCKS = 230;
+        private int MAX_FALLING_GEMS = 230;
 
         
 
@@ -119,8 +119,10 @@ namespace Unit04.Game.Directing
                     
 
                     //  This will work once you implement a ScoreBoard class
-                    // scoreBoard.UpdateScore(fallingObject.GetScoreValue);
+                    // ScoreBoard.UpdateScore(fallingObject.GetScoreValue);
+                    
                 }
+                // If statement to delete falling objects as they hit bottom row goes here?
             } 
         }
 

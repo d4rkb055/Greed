@@ -17,22 +17,14 @@ namespace Unit04.Game.Casting
         {
         }
 
-        /// <summary>
-        /// Gets the artifact's message.
-        /// </summary>
-        /// <returns>The message.</returns>
-        public string GetMessage()
-        {
-            return message;
-        }
 
         /// <summary>
         /// Sets the artifact's message to the given value.
         /// </summary>
         /// <param name="message">The given message.</param>
-        public void SetMessage(string message)
+        public void UpdateScore()
         {
-            this.message = message;
+            int score = GetScoreValue();
         }
     }
 }
