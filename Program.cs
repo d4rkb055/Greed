@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unit04.Game.Casting;
-using Unit04.Game.Directing;
-using Unit04.Game.Services;
+using Greed.Game.Casting;
+using Greed.Game.Directing;
+using Greed.Game.Services;
 
 
-namespace Unit04
+namespace Greed
 {
     /// <summary>
     /// The program's entry point.
@@ -48,35 +48,46 @@ namespace Unit04
             greedyBoy.SetColor(WHITE);
             greedyBoy.SetPosition(new Point(MAX_X / 2, MAX_Y - 15));
             cast.AddActor("greedy boy", greedyBoy);
-
-            // Create a Gem variable
-            Actor gem = new Actor();
-            gem.SetColor(WHITE);
-            gem.SetPosition(new Point(MAX_X / 2, MAX_Y));
             
+            // Create rock object
+            Rock rock = new Rock();
+            rock.SetText("O");
+            cast.AddActor("fallingObjects", rock);
+            
+            // Create Gem object 
+            Gem gem = new Gem();
+            gem.SetText("*");
+            gem.SetFontSize(20);
+            Random random = new Random();
+            int r = random.Next(0, 256);
+            int g = random.Next(0, 256);
+            int b = random.Next(0, 256);
+            Color color = new Color(r, g, b);
+            gem.SetColor(color);
+            cast.AddActor("fallingObjects", gem);
 
             // create the artifacts
-            Random random = new Random();
-            for (int i = 0; i < DEFAULT_ARTIFACTS; i++)
-            {
-                string text = ((char)random.Next(42, 43)).ToString();
+            // Random random = new Random();
+            // for (int i = 0; i < DEFAULT_ARTIFACTS; i++)
+            // {
+            //     string text = ((char)random.Next(42, 43)).ToString();
 
-                int x = random.Next(1, COLS);
-                int y = random.Next(1, ROWS);
-                Point position = new Point(x, y);
-                position = position.Scale(CELL_SIZE);
+            //     int x = random.Next(1, COLS);
+            //     int y = random.Next(1, ROWS);
+            //     Point position = new Point(x, y);
+            //     position = position.Scale(CELL_SIZE);
 
-                int r = random.Next(0, 256);
-                int g = random.Next(0, 256);
-                int b = random.Next(0, 256);
-                Color color = new Color(r, g, b);
+            //     int r = random.Next(0, 256);
+            //     int g = random.Next(0, 256);
+            //     int b = random.Next(0, 256);
+            //     Color color = new Color(r, g, b);
 
-                Score score = new Score();
-                score.SetFontSize(FONT_SIZE);
-                score.SetColor(color);
-                score.SetPosition(position);
-                cast.AddActor("score", score);
-            }
+            //     Score score = new Score();
+            //     score.SetFontSize(FONT_SIZE);
+            //     score.SetColor(color);
+            //     score.SetPosition(position);
+            //     cast.AddActor("score", score);
+            // }
 
             // start the game
             KeyboardService keyboardService = new KeyboardService(CELL_SIZE);

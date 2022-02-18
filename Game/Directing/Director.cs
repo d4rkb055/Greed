@@ -1,9 +1,10 @@
 using System.Collections.Generic;
-using Unit04.Game.Casting;
-using Unit04.Game.Services;
+using Greed.Game.Casting;
+using Greed.Game.Services;
+using System;
 
 
-namespace Unit04.Game.Directing
+namespace Greed.Game.Directing
 {
     /// <summary>
     /// <para>A person who directs the game.</para>
@@ -15,6 +16,9 @@ namespace Unit04.Game.Directing
     {
         private KeyboardService keyboardService = null;
         private VideoService videoService = null;
+        private int MAX_FALLING_ROCKS = 230;
+        private int MAX_FALLING_GEMS = 230;
+        
 
         /// <summary>
         /// Constructs a new instance of Director using the given KeyboardService and VideoService.
@@ -25,6 +29,30 @@ namespace Unit04.Game.Directing
         {
             this.keyboardService = keyboardService;
             this.videoService = videoService;
+        }
+
+        private void AddNewObjects(Cast cast)
+        {
+            List<Actor> fallingGems = cast.GetActors("fallingObjects");
+            if (fallingGems.Count < MAX_FALLING_GEMS)
+            {
+                Gem gem = new Gem();
+                Random random = new Random();
+                int x = random.Next(0, 60);
+                x *= 15;
+                gem.SetPosition(new Point(x, 0));
+                cast.AddActor("fallingObjects", gem);
+            }
+            List<Actor> fallingRocks = cast.GetActors("fallingObjects");
+            if (fallingRocks.Count < MAX_FALLING_ROCKS)
+            {
+                Rock rock = new Rock();
+                Random random = new Random();
+                int x = random.Next(0, 60);
+                x *= 15;
+                rock.SetPosition(new Point(x, 0));
+                cast.AddActor("fallingObjects", rock);
+            }
         }
 
         /// <summary>
@@ -60,22 +88,26 @@ namespace Unit04.Game.Directing
         /// <param name="cast">The given cast.</param>
         private void DoUpdates(Cast cast)
         {
+            AddNewObjects(cast);
             Actor banner = cast.GetFirstActor("banner");
-            Actor robot = cast.GetFirstActor("robot");
-            List<Actor> artifacts = cast.GetActors("artifacts");
+            Actor greedyBoy = cast.GetFirstActor("robot");
+            List<Actor> fallingObjects = cast.GetActors("fallingObjects");
 
             banner.SetText($"Score: ");
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
-            robot.MoveNext(maxX, maxY);
+            greedyBoy.MoveNext(maxX, maxY);
 
-            foreach (Actor actor in artifacts)
+            foreach (Actor actor in fallingObjects)
             {
-                if (robot.GetPosition().Equals(actor.GetPosition()))
+                actor.MoveNext(maxX, maxY);
+                if (greedyBoy.GetPosition().GetX() >= actor.GetPosition().GetX()-7 &&
+                    greedyBoy.GetPosition().GetX() <= actor.GetPosition().GetX()+7 &&
+                    greedyBoy.GetPosition().GetY() >= actor.GetPosition().GetY()-7 &&
+                    greedyBoy.GetPosition().GetY() <= actor.GetPosition().GetY()+7)
                 {
-                    Score artifact = (Score) actor;
-                    string message = artifact.GetMessage();
-                    banner.SetText(message);
+                    cast.RemoveActor("fallingObjects",actor);
+                    
                 }
             } 
         }
