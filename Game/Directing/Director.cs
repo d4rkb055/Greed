@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unit04.Game.Casting;
 using Unit04.Game.Services;
@@ -16,6 +17,12 @@ namespace Unit04.Game.Directing
         private KeyboardService keyboardService = null;
         private VideoService videoService = null;
 
+        private int MAX_FALLING_ROCKS = 20;
+        private int MAX_FALLING_GEMS = 10;
+
+        
+
+
         /// <summary>
         /// Constructs a new instance of Director using the given KeyboardService and VideoService.
         /// </summary>
@@ -25,6 +32,31 @@ namespace Unit04.Game.Directing
         {
             this.keyboardService = keyboardService;
             this.videoService = videoService;
+        }
+
+        private void AddNewObjects(Cast cast)
+        {
+            List<Actor> fallingRocks = cast.GetActors("fallingObjects");
+            if (fallingRocks.Count < MAX_FALLING_ROCKS)
+            {
+                Rock rock = new Rock();
+                Random random = new Random();
+                int x = random.Next(0, 60);
+                x *= 15;
+                rock.SetPosition(new Point(x, 0));
+                cast.AddActor("fallingObjects", rock);
+            }
+            List<Actor> fallingGems = cast.GetActors("fallingObjects");
+            if (fallingGems.Count < MAX_FALLING_GEMS)
+            {
+                Gem gem = new Gem();
+                Random random = new Random();
+                int x = random.Next(0, 60);
+                x *= 15;
+                gem.SetPosition(new Point(x, 0));
+                cast.AddActor("fallingObjects", gem);
+            }
+
         }
 
         /// <summary>
@@ -60,22 +92,34 @@ namespace Unit04.Game.Directing
         /// <param name="cast">The given cast.</param>
         private void DoUpdates(Cast cast)
         {
+            AddNewObjects(cast);
             Actor banner = cast.GetFirstActor("banner");
             Actor robot = cast.GetFirstActor("robot");
-            List<Actor> artifacts = cast.GetActors("artifacts");
+            List<Actor> fallingObjects = cast.GetActors("fallingObjects");
 
-            banner.SetText("");
+            
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
             robot.MoveNext(maxX, maxY);
 
-            foreach (Actor actor in artifacts)
+            foreach (Actor actor in fallingObjects)
             {
-                if (robot.GetPosition().Equals(actor.GetPosition()))
+                actor.MoveNext(maxX, maxY);
+
+                // Collision test
+                if (robot.GetPosition().GetX() >= actor.GetPosition().GetX()-7 && 
+                    robot.GetPosition().GetX() <= actor.GetPosition().GetX()+7 &&
+                    robot.GetPosition().GetY() >= actor.GetPosition().GetY()-7 &&
+                    robot.GetPosition().GetY() <= actor.GetPosition().GetY()+7)
                 {
-                    Artifact artifact = (Artifact) actor;
-                    string message = artifact.GetMessage();
-                    banner.SetText(message);
+                    // Artifact artifact = (Artifact) actor;
+                    cast.RemoveActor("fallingObjects", actor);
+                    
+                    FallingObject fallingObject = (FallingObject) actor;
+                    
+
+                    //  This will work once you implement a ScoreBoard class
+                    // scoreBoard.UpdateScore(fallingObject.GetScoreValue);
                 }
             } 
         }

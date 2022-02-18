@@ -6,14 +6,14 @@ namespace Unit04.Game.Casting
     /// The responsibility of an Artifact is to provide a message about itself.
     /// </para>
     /// </summary>
-    public class Artifact : Actor
+    public class ScoreBoard : FallingObject
     {
         private string message = "";
 
         /// <summary>
         /// Constructs a new instance of an Artifact.
         /// </summary>
-        public Artifact()
+        public ScoreBoard()
         {
         }
 
