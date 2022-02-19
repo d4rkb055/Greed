@@ -23,7 +23,7 @@ namespace Greed
         private static int ROWS = 40;
         private static string CAPTION = "Greed";
         private static Color WHITE = new Color(255, 255, 255);
-        private static int DEFAULT_ARTIFACTS = 40;
+        // private static int DEFAULT_ARTIFACTS = 40;
 
 
         /// <summary>
@@ -47,17 +47,21 @@ namespace Greed
             Actor greedyBoy = new Actor();
             greedyBoy.SetColor(WHITE);
             greedyBoy.SetPosition(new Point(MAX_X / 2, MAX_Y - 15));
-            cast.AddActor("greedy boy", greedyBoy);
+            cast.AddActor("greedyBoy", greedyBoy);
             
             // Create rock object
-            Rock rock = new Rock();
+            FallingObject rock = new FallingObject(-1);
             rock.SetText("O");
+            rock.SetVelocity(new Point(0, 5));
             cast.AddActor("fallingObjects", rock);
             
             // Create Gem object 
-            Gem gem = new Gem();
+            FallingObject gem = new FallingObject(1);
             gem.SetText("*");
             gem.SetFontSize(20);
+            gem.SetVelocity(new Point(0, 5));
+            // gem.SetPosition(new Point(,0));
+            
             Random random = new Random();
             int r = random.Next(0, 256);
             int g = random.Next(0, 256);

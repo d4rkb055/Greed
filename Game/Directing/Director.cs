@@ -37,7 +37,7 @@ namespace Greed.Game.Directing
             List<Actor> fallingGems = cast.GetActors("fallingObjects");
             if (fallingGems.Count < MAX_FALLING_GEMS)
             {
-                Gem gem = new Gem();
+                FallingObject gem = new FallingObject(1);
                 Random random = new Random();
                 int x = random.Next(0, 60);
                 x *= 15;
@@ -47,7 +47,7 @@ namespace Greed.Game.Directing
             List<Actor> fallingRocks = cast.GetActors("fallingObjects");
             if (fallingRocks.Count < MAX_FALLING_ROCKS)
             {
-                Rock rock = new Rock();
+                FallingObject rock = new FallingObject(-1);
                 Random random = new Random();
                 int x = random.Next(0, 60);
                 x *= 15;

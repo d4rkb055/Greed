@@ -8,31 +8,25 @@ namespace Greed.Game.Casting
     /// </summary>
     public class Score : Actor
     {
-        private string message = "";
+        private int score = 0;
 
         /// <summary>
         /// Constructs a new instance of an Artifact.
         /// </summary>
         public Score()
         {
+
         }
 
-        /// <summary>
-        /// Gets the artifact's message.
-        /// </summary>
-        /// <returns>The message.</returns>
-        public string GetMessage()
+        public string GetScoreMessage() 
         {
-            return message;
+            return $"Score: {score}";
         }
 
-        /// <summary>
-        /// Sets the artifact's message to the given value.
-        /// </summary>
-        /// <param name="message">The given message.</param>
-        public void SetMessage(string message)
+        public void HitObject(int increment)
         {
-            this.message = message;
+            this.score += increment;
         }
+        
     }
 }
