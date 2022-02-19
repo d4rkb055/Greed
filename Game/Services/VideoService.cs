@@ -63,7 +63,18 @@ namespace Greed.Game.Services
         /// <param name="actor">The actor to draw.</param>
         public void DrawActor(Actor actor)
         {
-            string text = actor.GetText();
+            // string text = "";
+            // if(actor is Score)
+            // {
+            //     text = ((Score)actor).GetScoreMessage();
+            // }
+            // else
+            // {
+            //     text = actor.GetText();
+            // }
+
+            string text = actor is Score ? ((Score)actor).GetScoreMessage() : actor.GetText();
+                
             int x = actor.GetPosition().GetX();
             int y = actor.GetPosition().GetY();
             int fontSize = actor.GetFontSize();

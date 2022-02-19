@@ -15,7 +15,7 @@ namespace Greed.Game.Casting
         /// </summary>
         public Score()
         {
-
+            
         }
 
         public string GetScoreMessage() 

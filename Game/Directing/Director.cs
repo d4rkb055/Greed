@@ -90,11 +90,10 @@ namespace Greed.Game.Directing
         private void DoUpdates(Cast cast)
         {
             AddNewObjects(cast);
-            Actor banner = cast.GetFirstActor("banner");
             Actor greedyBoy = cast.GetFirstActor("greedyBoy");
             List<Actor> fallingObjects = cast.GetActors("fallingObjects");
 
-            banner.SetText($"Score: ");
+            
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
             greedyBoy.MoveNext(maxX, maxY);

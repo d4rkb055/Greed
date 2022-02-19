@@ -35,20 +35,17 @@ namespace Greed
             // create the cast
             Cast cast = new Cast();
 
-            // create the banner
-            Actor banner = new Actor();
-            banner.SetText("");
-            banner.SetFontSize(FONT_SIZE);
-            banner.SetColor(WHITE);
-            banner.SetPosition(new Point(CELL_SIZE, 0));
-            cast.AddActor("banner", banner);
+            // create score object
+            Score score = new Score();
+            cast.AddActor("Score", score);
 
-            // create the robot
+            // create the greedyBoy
             Actor greedyBoy = new Actor();
+            greedyBoy.SetText("#");
             greedyBoy.SetColor(WHITE);
             greedyBoy.SetPosition(new Point(MAX_X / 2, MAX_Y - 15));
             cast.AddActor("greedyBoy", greedyBoy);
-            
+
             // Create rock object
             FallingObject rock = new FallingObject(-1);
             rock.SetText("O");
@@ -57,12 +54,15 @@ namespace Greed
             
             // Create Gem object 
             FallingObject gem = new FallingObject(1);
+            Random random = new Random();
             gem.SetText("*");
             gem.SetFontSize(20);
             gem.SetVelocity(new Point(0, 5));
-            // gem.SetPosition(new Point(,0));
-            
-            Random random = new Random();
+            gem.SetPosition(new Point(15,0));
+            int x = random.Next(1, COLS);
+            int y = 0;
+            Point position = new Point (x, y);
+            position = position.Scale(CELL_SIZE);
             int r = random.Next(0, 256);
             int g = random.Next(0, 256);
             int b = random.Next(0, 256);
