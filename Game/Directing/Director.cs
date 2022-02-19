@@ -93,7 +93,42 @@ namespace Greed.Game.Directing
             Actor greedyBoy = cast.GetFirstActor("greedyBoy");
             List<Actor> fallingObjects = cast.GetActors("fallingObjects");
 
-            
+            // // Create list of rock to be added to cast
+            // List<FallingObject> Rocks = cast.GetActors("Rocks");
+            // Random random = new Random();
+            // Rocks.SetText("*");
+            // Rocks.SetFontSize(20);
+            // Rocks.SetVelocity(new Point(0, 5));
+            // Rocks.SetPosition(new Point(15,0));
+            // int x = random.Next(1, COLS);
+            // int y = 0;
+            // Point position = new Point (x, y);
+            // position = position.Scale(CELL_SIZE);
+            // int r = random.Next(0, 256);
+            // int g = random.Next(0, 256);
+            // int b = random.Next(0, 256);
+            // Color color = new Color(r, g, b);
+            // Rocks.SetColor(color);
+            // cast.AddActor("fallingObjects", Rocks);
+
+            // // Creat list of Gems to be added to cast
+            // List<FallingObject> Gems = cast.GetActors("Gems");
+            // Random random = new Random();
+            // Gems.SetText("*");
+            // Gems.SetFontSize(20);
+            // Gems.SetVelocity(new Point(0, 5));
+            // Gems.SetPosition(new Point(15,0));
+            // int x = random.Next(1, COLS);
+            // int y = 0;
+            // Point position = new Point (x, y);
+            // position = position.Scale(CELL_SIZE);
+            // int r = random.Next(0, 256);
+            // int g = random.Next(0, 256);
+            // int b = random.Next(0, 256);
+            // Color color = new Color(r, g, b);
+            // Gems.SetColor(color);
+            // cast.AddActor("fallingObjects", Gems);
+
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
             greedyBoy.MoveNext(maxX, maxY);
@@ -107,8 +142,9 @@ namespace Greed.Game.Directing
                     greedyBoy.GetPosition().GetY() <= actor.GetPosition().GetY()+7)
                 {
                     cast.RemoveActor("fallingObjects",actor);
-                    if(fallingObject == 
+                    // if(fallingObject == Rock)
                 }
+
             } 
         }
 
