@@ -107,7 +107,7 @@ namespace Greed.Game.Directing
                     greedyBoy.GetPosition().GetY() <= actor.GetPosition().GetY()+7)
                 {
                     cast.RemoveActor("fallingObjects",actor);
-                    
+                    if(fallingObject == 
                 }
             } 
         }

@@ -27,6 +27,15 @@ namespace Greed.Game.Casting
         {
             this.score += increment;
         }
+        public void HitGem()
+        {
+            this.score += 1;
+        }
+
+        public void HitRock()
+        {
+            this.score -= 1;
+        }
         
     }
 }

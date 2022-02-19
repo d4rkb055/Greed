@@ -1,0 +1,16 @@
+2/18/22
+7:05
+
+ACTION ITEMS
+
+determine if greedy boy hits a falling object
+-when that happens, update the score
+--(this takes place in doupdates in director)
+
+display more rocks and gems on the screen
+-(this takes place in doupdates in director)
+
+SIDE NOTE
+(elminiate previous rock and gem created in program after
+these two action items take place)
+
