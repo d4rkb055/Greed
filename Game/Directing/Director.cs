@@ -64,6 +64,7 @@ namespace Greed.Game.Directing
         /// <param name="cast">The given cast.</param>
         public void StartGame(Cast cast)
         {
+            cast.AddActor("text", score);
             videoService.OpenWindow();
             while (videoService.IsWindowOpen())
             {
@@ -142,17 +143,25 @@ namespace Greed.Game.Directing
                     greedyBoy.GetPosition().GetX() <= fallingObject.GetPosition().GetX()+7 &&
                     greedyBoy.GetPosition().GetY() >= fallingObject.GetPosition().GetY()-7 &&
                     greedyBoy.GetPosition().GetY() <= fallingObject.GetPosition().GetY()+7)
+                    // if (greedyBoy.GetPosition() == fallingObject.GetPosition())
                 {
                     cast.RemoveActor("fallingObjects",fallingObject);
                     
+                    // Score score = new Score();
+                    // score = (Score) cast.GetFirstActor("score");
                     if(fallingObject.GetText() == "*")
                     {
-                        score.HitGem();
+                        // cast.GetFirstActor("score")
+                        score.HitObject(1);
+                        score.SetText(score.GetScoreMessage());
                     }
                     else if (fallingObject.GetText() == "O")
                     {
-                        score.HitRock();
+                        score.HitObject(-1);
+                        score.SetText(score.GetScoreMessage());
                     }
+
+                    
                 }
 
             } 

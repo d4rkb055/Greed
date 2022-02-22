@@ -36,8 +36,8 @@ namespace Greed
             Cast cast = new Cast();
 
             // create score object
-            Score score = new Score();
-            cast.AddActor("Score", score);
+            // Score score = new Score();
+            // cast.AddActor("Score", score);
 
             // create the greedyBoy
             Actor greedyBoy = new Actor();
@@ -70,6 +70,7 @@ namespace Greed
             gem.SetColor(color);
             cast.AddActor("fallingObjects", gem);
 
+            
             // create the artifacts
             // Random random = new Random();
             // for (int i = 0; i < DEFAULT_ARTIFACTS; i++)
