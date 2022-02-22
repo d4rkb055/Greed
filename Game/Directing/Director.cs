@@ -146,22 +146,23 @@ namespace Greed.Game.Directing
                     // if (greedyBoy.GetPosition() == fallingObject.GetPosition())
                 {
                     cast.RemoveActor("fallingObjects",fallingObject);
-                    
+
                     // Score score = new Score();
                     // score = (Score) cast.GetFirstActor("score");
-                    if(fallingObject.GetText() == "*")
+                    switch (fallingObject.GetText())
                     {
-                        // cast.GetFirstActor("score")
-                        score.HitObject(1);
-                        score.SetText(score.GetScoreMessage());
-                    }
-                    else if (fallingObject.GetText() == "O")
-                    {
-                        score.HitObject(-1);
-                        score.SetText(score.GetScoreMessage());
+                        case "*":
+                            // cast.GetFirstActor("score");
+                            score.HitObject(1);
+                            score.SetText(score.GetScoreMessage());
+                            break;
+                        case "O":
+                            score.HitObject(-1);
+                            score.SetText(score.GetScoreMessage());
+                            break;
                     }
 
-                    
+
                 }
 
             } 
