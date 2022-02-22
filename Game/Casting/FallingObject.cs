@@ -13,9 +13,11 @@ namespace Greed.Game.Casting
         {
             return score;
         }
-        public void SetScore(int score)
+        public int SetScore(int score)
         {
             this.score = score;
+            return score;
+
         }
     }
 }

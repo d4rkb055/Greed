@@ -20,6 +20,7 @@ namespace Greed.Game.Directing
         private int MAX_FALLING_ROCKS = 230;
         private int MAX_FALLING_GEMS = 230;
         
+        private Score score;
 
         /// <summary>
         /// Constructs a new instance of Director using the given KeyboardService and VideoService.
@@ -30,6 +31,7 @@ namespace Greed.Game.Directing
         {
             this.keyboardService = keyboardService;
             this.videoService = videoService;
+            this.score = new Score();
         }
 
         private void AddNewObjects(Cast cast)
@@ -133,16 +135,24 @@ namespace Greed.Game.Directing
             int maxY = videoService.GetHeight();
             greedyBoy.MoveNext(maxX, maxY);
 
-            foreach (Actor actor in fallingObjects)
+            foreach (Actor fallingObject in fallingObjects)
             {
-                actor.MoveNext(maxX, maxY);
-                if (greedyBoy.GetPosition().GetX() >= actor.GetPosition().GetX()-7 &&
-                    greedyBoy.GetPosition().GetX() <= actor.GetPosition().GetX()+7 &&
-                    greedyBoy.GetPosition().GetY() >= actor.GetPosition().GetY()-7 &&
-                    greedyBoy.GetPosition().GetY() <= actor.GetPosition().GetY()+7)
+                fallingObject.MoveNext(maxX, maxY);
+                if (greedyBoy.GetPosition().GetX() >= fallingObject.GetPosition().GetX()-7 &&
+                    greedyBoy.GetPosition().GetX() <= fallingObject.GetPosition().GetX()+7 &&
+                    greedyBoy.GetPosition().GetY() >= fallingObject.GetPosition().GetY()-7 &&
+                    greedyBoy.GetPosition().GetY() <= fallingObject.GetPosition().GetY()+7)
                 {
-                    cast.RemoveActor("fallingObjects",actor);
-                    // if(fallingObject == Rock)
+                    cast.RemoveActor("fallingObjects",fallingObject);
+                    
+                    if(fallingObject.GetText() == "*")
+                    {
+                        score.HitGem();
+                    }
+                    else if (fallingObject.GetText() == "O")
+                    {
+                        score.HitRock();
+                    }
                 }
 
             } 

@@ -30,11 +30,13 @@ namespace Greed.Game.Casting
         public void HitGem()
         {
             this.score += 1;
+            SetText($"Score: {score}");
         }
 
         public void HitRock()
         {
             this.score -= 1;
+            SetText($"Score: {score}");
         }
         
     }
