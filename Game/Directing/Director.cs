@@ -20,6 +20,8 @@ namespace Greed.Game.Directing
         private int MAX_FALLING_ROCKS = 230;
         private int MAX_FALLING_GEMS = 230;
 
+        // DateTime lastSpawn =  
+
         
         
         private Score score;
@@ -46,6 +48,13 @@ namespace Greed.Game.Directing
                 int x = random.Next(0, 60);
                 x *= 15;
                 gem.SetPosition(new Point(x, 0));
+                gem.SetText("*");
+                gem.SetVelocity(new Point(0, 5));
+                int r = random.Next(0, 256);
+                int g = random.Next(0, 256);
+                int b = random.Next(0, 256);
+                Color color = new Color(r, g, b);
+                gem.SetColor(color);
                 cast.AddActor("fallingObjects", gem);
             }
             List<Actor> fallingRocks = cast.GetActors("fallingObjects");
@@ -56,10 +65,17 @@ namespace Greed.Game.Directing
                 int x = random.Next(0, 60);
                 x *= 15;
                 rock.SetPosition(new Point(x, 0));
+                rock.SetText("O");
+                rock.SetVelocity(new Point(0, 5));
+                int r = 150;
+                int g = 150;
+                int b = 150;
+                Color color = new Color(r, g, b);
+                rock.SetColor(color);
                 cast.AddActor("fallingObjects", rock);
             }
         }
-
+        
         /// <summary>
         /// Starts the game by running the main game loop for the given cast.
         /// </summary>
@@ -163,10 +179,6 @@ namespace Greed.Game.Directing
                             score.SetText(score.GetScoreMessage());
                             break;
                     }
-            // fallingObjectSpawn()
-            // {
-                
-            // }
                 }
 
             } 
