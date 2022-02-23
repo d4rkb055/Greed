@@ -49,7 +49,7 @@ namespace Greed.Game.Directing
                 x *= 15;
                 gem.SetPosition(new Point(x, 0));
                 gem.SetText("*");
-                gem.SetVelocity(new Point(0, 5));
+                gem.SetVelocity(new Point(0, 10));
                 int r = random.Next(0, 256);
                 int g = random.Next(0, 256);
                 int b = random.Next(0, 256);
@@ -66,7 +66,7 @@ namespace Greed.Game.Directing
                 x *= 15;
                 rock.SetPosition(new Point(x, 0));
                 rock.SetText("O");
-                rock.SetVelocity(new Point(0, 10));
+                rock.SetVelocity(new Point(0, 15));
                 int r = 150;
                 int g = 150;
                 int b = 150;
