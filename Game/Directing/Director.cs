@@ -66,7 +66,7 @@ namespace Greed.Game.Directing
                 x *= 15;
                 rock.SetPosition(new Point(x, 0));
                 rock.SetText("O");
-                rock.SetVelocity(new Point(0, 5));
+                rock.SetVelocity(new Point(0, 10));
                 int r = 150;
                 int g = 150;
                 int b = 150;
