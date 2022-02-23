@@ -19,6 +19,8 @@ namespace Greed.Game.Directing
         private VideoService videoService = null;
         private int MAX_FALLING_ROCKS = 230;
         private int MAX_FALLING_GEMS = 230;
+
+        
         
         private Score score;
 
@@ -161,8 +163,10 @@ namespace Greed.Game.Directing
                             score.SetText(score.GetScoreMessage());
                             break;
                     }
-
-
+            // fallingObjectSpawn()
+            // {
+                
+            // }
                 }
 
             } 
