@@ -20,6 +20,8 @@ namespace Greed.Game.Directing
         private int MAX_FALLING_ROCKS = 230;
         private int MAX_FALLING_GEMS = 230;
 
+        private string mode;
+
         // DateTime lastSpawn =  
 
         
@@ -31,11 +33,12 @@ namespace Greed.Game.Directing
         /// </summary>
         /// <param name="keyboardService">The given KeyboardService.</param>
         /// <param name="videoService">The given VideoService.</param>
-        public Director(KeyboardService keyboardService, VideoService videoService)
+        public Director(KeyboardService keyboardService, VideoService videoService, string mode)
         {
             this.keyboardService = keyboardService;
             this.videoService = videoService;
             this.score = new Score();
+            this.mode = mode;
         }
 
         private void AddNewObjects(Cast cast)
@@ -49,7 +52,16 @@ namespace Greed.Game.Directing
                 x *= 15;
                 gem.SetPosition(new Point(x, 0));
                 gem.SetText("*");
-                gem.SetVelocity(new Point(0, 10));
+                if(mode == "easy")
+                {
+                    gem.SetVelocity(new Point(0, 10));
+                }
+                else if(mode == "hard")
+                {
+                    int x1 = random.Next(-15, 15);
+                    int y1 = random.Next(1, 15);
+                    gem.SetVelocity(new Point(x1, y1));
+                }
                 int r = random.Next(0, 256);
                 int g = random.Next(0, 256);
                 int b = random.Next(0, 256);

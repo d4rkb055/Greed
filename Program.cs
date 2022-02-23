@@ -32,6 +32,11 @@ namespace Greed
         /// <param name="args">The given arguments.</param>
         static void Main(string[] args)
         {
+            string mode = "easy";
+            if(args.Count() > 0)
+            {
+                mode = args[0];
+            }
             // create the cast
             Cast cast = new Cast();
 
@@ -98,7 +103,7 @@ namespace Greed
             KeyboardService keyboardService = new KeyboardService(CELL_SIZE);
             VideoService videoService 
                 = new VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE, false);
-            Director director = new Director(keyboardService, videoService);
+            Director director = new Director(keyboardService, videoService, mode);
             director.StartGame(cast);
         }
     }
