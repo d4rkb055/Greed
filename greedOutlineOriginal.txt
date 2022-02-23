@@ -1,0 +1,114 @@
+Object: Program
+Responsibility: In charge of starting the game
+Behavior: 
+-Creates the cast 
+-Creates the actors 
+-Fills the cast with given actors
+-Starts
+States/Attiributes:
+	-local variables
+		-Keyboard service
+		-Gem 
+		-rock
+		-Score 
+		-Greedy boy 
+		-Cast local 
+		-Position
+		-Video service 
+		-Director
+
+Object: Director
+Responsibility: Directs the flow of the game
+Behavior:
+¬	-Start game
+		-Get inputs
+		-Do updates 
+		-Get Outputs
+States/Attributes:
+	-Member variables
+		-Keyboard service
+		-Video service 
+	-local variables
+		-Greedy boy
+		-Velocity 
+		-Score
+		-artifacts
+
+Object: Actor 
+Responsibility: needs to track everything tied to an actor. 
+Behavior: 
+-Tracks actor appearance 
+-Track actor position in 2D space 
+-Track actor velocity 
+-Get Actors Color
+	-Get actors Font Size
+	-Get actors Position
+	-Get Actors Current Velocity
+	-Move actor to the next position
+	-Sets the actors color to a given value 
+	-Set actors Font Size
+	-Set actors Position
+	-Set Actors Current Velocity
+
+States/Attributes:
+
+Object: Score *(inherit from actor)
+Responsibility: keep track of the specific elements for the non-player actors
+Behavior:
+	-Add the score 
+	-Subtract the score
+States/Attributes:
+
+Object: Cast
+Responsibility: Keep track of the collection of actors 
+Behavior:
+	-adds the given actor to the given group 
+	-gets the actor in the given group 
+	-gets all actors in the cast	
+	-Gets the first actor in the given group 
+	-removes the given actor from the given group 
+States/Attributes:
+
+Object: Color
+Responsibility: to hold and provide information about color in the game
+Behavior:
+	-Gets the colors alpha value 
+	-Gets the colors blue value 
+	-Gets the colors Green value 
+	-Gets the colors Red Value 
+States/Attributes:
+
+Object: Point
+Responsibility: to hold and provide the information about the locations in the game
+Behavior:
+	-Storing x & y to this class and then summing them to create a new point
+	-Compare points x and y to determine if they are the same: (line 45)
+	-Gets the value of the x coordinate 
+	-Gets the value of the y coordinate 
+	-Scales the point by multiplying the x and y values by the provided factor (line 67)
+States/Attributes:
+
+Object: Keyboard Services
+Responsibility: Detect player key presses & translate them into a point representing a direction
+Behavior:
+	-Gets the selected direction based on the currently pressed keys 
+	-Returns the direction as an instance of point 
+States/Attributes:
+
+Object: Video Service
+Responsibility: Draw the game state on the screen
+Behavior:
+	-Closes the window and released all resources
+	-Clears the buffer in preparation for the next rendering 
+	-Draws the given list of the actors on the screen (line 76)
+	-Copies the buffer contents to the screen
+	-Gets the grids cell size
+	-Gets the screen height 
+	-Gets the screen width 
+	-Determine whether the window is still open 
+	-Open a new window with the provided title
+	-Draws a grid on the screen
+	-Converts the given color to its “Raylib” equivalent 
+States/Attributes:
+
+
