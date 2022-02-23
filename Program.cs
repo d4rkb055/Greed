@@ -46,29 +46,29 @@ namespace Greed
             greedyBoy.SetPosition(new Point(MAX_X / 2, MAX_Y - 15));
             cast.AddActor("greedyBoy", greedyBoy);
 
-            // Create rock object
-            FallingObject rock = new FallingObject(-1);
-            rock.SetText("O");
-            rock.SetVelocity(new Point(0, 5));
-            cast.AddActor("fallingObjects", rock);
+            // // Create rock object
+            // FallingObject rock = new FallingObject(-1);
+            // rock.SetText("O");
+            // rock.SetVelocity(new Point(0, 5));
+            // cast.AddActor("fallingObjects", rock);
             
-            // Create Gem object 
-            FallingObject gem = new FallingObject(1);
-            Random random = new Random();
-            gem.SetText("*");
-            gem.SetFontSize(20);
-            gem.SetVelocity(new Point(0, 5));
-            gem.SetPosition(new Point(15,0));
-            int x = random.Next(1, COLS);
-            int y = 0;
-            Point position = new Point (x, y);
-            position = position.Scale(CELL_SIZE);
-            int r = random.Next(0, 256);
-            int g = random.Next(0, 256);
-            int b = random.Next(0, 256);
-            Color color = new Color(r, g, b);
-            gem.SetColor(color);
-            cast.AddActor("fallingObjects", gem);
+            // // Create Gem object 
+            // FallingObject gem = new FallingObject(1);
+            // Random random = new Random();
+            // gem.SetText("*");
+            // gem.SetFontSize(20);
+            // gem.SetVelocity(new Point(0, 5));
+            // gem.SetPosition(new Point(15,0));
+            // int x = random.Next(1, COLS);
+            // int y = 0;
+            // Point position = new Point (x, y);
+            // position = position.Scale(CELL_SIZE);
+            // int r = random.Next(0, 256);
+            // int g = random.Next(0, 256);
+            // int b = random.Next(0, 256);
+            // Color color = new Color(r, g, b);
+            // gem.SetColor(color);
+            // cast.AddActor("fallingObjects", gem);
 
             
             // create the artifacts
