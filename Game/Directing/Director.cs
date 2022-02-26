@@ -52,15 +52,33 @@ namespace Greed.Game.Directing
                 x *= 15;
                 gem.SetPosition(new Point(x, 0));
                 gem.SetText("*");
-                if(mode == "easy")
+
+                FallingObject rock = new FallingObject(-1);
+                x *= 15;
+                rock.SetPosition(new Point(x, 0));
+                rock.SetText("O");
+                rock.SetVelocity(new Point(0, 15));
+                if(mode == "medium")
                 {
-                    gem.SetVelocity(new Point(0, 10));
+                    int x1 = random.Next(-5, 5);
+                    gem.SetVelocity(new Point(x1, 10));
                 }
                 else if(mode == "hard")
                 {
-                    int x1 = random.Next(-15, 15);
+                    int x2 = random.Next(-10, 10);
                     int y1 = random.Next(1, 15);
-                    gem.SetVelocity(new Point(x1, y1));
+                    gem.SetVelocity(new Point(x2, y1));
+                }
+                else if(mode == "hero")
+                {
+                    int x3 = random.Next(-15, 15);
+                    int y3 = random.Next(1, 15);
+                    gem.SetVelocity(new Point(x3, y3));
+                }
+                else
+                {
+                    mode = "normal";
+                    gem.SetVelocity(new Point(0, 10));
                 }
                 int r = random.Next(0, 256);
                 int g = random.Next(0, 256);
@@ -85,6 +103,18 @@ namespace Greed.Game.Directing
                 Color color = new Color(r, g, b);
                 rock.SetColor(color);
                 cast.AddActor("fallingObjects", rock);
+                if(mode == "hard")
+                {
+                    int x1 = random.Next(-10, 10);
+                    int y1 = random.Next(1, 15);
+                    rock.SetVelocity(new Point(x1, y1));
+                }
+                else if(mode == "hero")
+                {
+                    int x3 = random.Next(-15, 15);
+                    int y3 = random.Next(1, 15);
+                    rock.SetVelocity(new Point(x3, y3));
+                }
             }
         }
         
@@ -112,8 +142,16 @@ namespace Greed.Game.Directing
         private void GetInputs(Cast cast)
         {
             Actor greedyBoy = cast.GetFirstActor("greedyBoy");
-            Point velocity = keyboardService.GetDirection();
-            greedyBoy.SetVelocity(velocity);     
+            if(mode == "hero")
+            {
+                Point velocity = keyboardService.GetHeroDirection();
+                greedyBoy.SetVelocity(velocity); 
+            }
+            else
+            {
+                Point velocity = keyboardService.GetDirection();
+                greedyBoy.SetVelocity(velocity); 
+            }     
         }
 
         /// <summary>
@@ -125,42 +163,6 @@ namespace Greed.Game.Directing
             AddNewObjects(cast);
             Actor greedyBoy = cast.GetFirstActor("greedyBoy");
             List<Actor> fallingObjects = cast.GetActors("fallingObjects");
-
-            // // Create list of rock to be added to cast
-            // List<FallingObject> Rocks = cast.GetActors("Rocks");
-            // Random random = new Random();
-            // Rocks.SetText("*");
-            // Rocks.SetFontSize(20);
-            // Rocks.SetVelocity(new Point(0, 5));
-            // Rocks.SetPosition(new Point(15,0));
-            // int x = random.Next(1, COLS);
-            // int y = 0;
-            // Point position = new Point (x, y);
-            // position = position.Scale(CELL_SIZE);
-            // int r = random.Next(0, 256);
-            // int g = random.Next(0, 256);
-            // int b = random.Next(0, 256);
-            // Color color = new Color(r, g, b);
-            // Rocks.SetColor(color);
-            // cast.AddActor("fallingObjects", Rocks);
-
-            // // Creat list of Gems to be added to cast
-            // List<FallingObject> Gems = cast.GetActors("Gems");
-            // Random random = new Random();
-            // Gems.SetText("*");
-            // Gems.SetFontSize(20);
-            // Gems.SetVelocity(new Point(0, 5));
-            // Gems.SetPosition(new Point(15,0));
-            // int x = random.Next(1, COLS);
-            // int y = 0;
-            // Point position = new Point (x, y);
-            // position = position.Scale(CELL_SIZE);
-            // int r = random.Next(0, 256);
-            // int g = random.Next(0, 256);
-            // int b = random.Next(0, 256);
-            // Color color = new Color(r, g, b);
-            // Gems.SetColor(color);
-            // cast.AddActor("fallingObjects", Gems);
 
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
@@ -192,8 +194,7 @@ namespace Greed.Game.Directing
                             break;
                     }
                 }
-
-            } 
+            }
         }
 
         /// <summary>

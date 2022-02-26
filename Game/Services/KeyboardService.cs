@@ -14,6 +14,7 @@ namespace Greed.Game.Services
     public class KeyboardService
     {
         private int cellSize = 15;
+        private string mode;
 
         /// <summary>
         /// Constructs a new instance of KeyboardService using the given cell size.
@@ -43,10 +44,39 @@ namespace Greed.Game.Services
                 dx = 1;
             }
 
+
             Point direction = new Point(dx, dy);
             direction = direction.Scale(cellSize);
 
             return direction;
+        }
+
+        public Point GetHeroDirection()
+        {
+            int dx = 0;
+            int dy = 0;
+            if(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+            {
+                dy = -1;
+            }
+            if(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN))
+            {
+                dy = 1;
+            }
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+            {
+                dx = -1;
+            }
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
+            {
+                dx = 1;
+            }
+
+            Point heroDirection = new Point(dx, dy);
+            heroDirection = heroDirection.Scale(cellSize);
+
+            return heroDirection;
         }
     }
 }

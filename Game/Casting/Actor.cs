@@ -61,6 +61,11 @@ namespace Greed.Game.Casting
             return text;
         }
 
+        internal void SetColor(object wHITE)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Gets the actor's current velocity.
         /// </summary>
