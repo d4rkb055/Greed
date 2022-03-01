@@ -130,6 +130,12 @@ namespace Greed.Game.Directing
                 box.SetPosition(new Point(x, 0));
                 box.SetText("0");
                 box.SetVelocity(new Point(0, 5));
+                if(mode == "hero")
+                {
+                    int x3 = random.Next(-15, 15);
+                    int y3 = random.Next(1, 15);
+                    box.SetVelocity(new Point(x3, y3));
+                }
                 int r = 255;
                 int g = 105;
                 int b = 180;
