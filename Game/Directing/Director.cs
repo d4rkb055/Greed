@@ -19,6 +19,7 @@ namespace Greed.Game.Directing
         private VideoService videoService = null;
         private int MAX_FALLING_ROCKS = 230;
         private int MAX_FALLING_GEMS = 230;
+        private int MAX_FALLING_BOXES = 20;
 
         private string mode;
 
@@ -86,6 +87,7 @@ namespace Greed.Game.Directing
                 Color color = new Color(r, g, b);
                 gem.SetColor(color);
                 cast.AddActor("fallingObjects", gem);
+                
             }
             List<Actor> fallingRocks = cast.GetActors("fallingObjects");
             if (fallingRocks.Count < MAX_FALLING_ROCKS)
@@ -115,6 +117,26 @@ namespace Greed.Game.Directing
                     int y3 = random.Next(1, 15);
                     rock.SetVelocity(new Point(x3, y3));
                 }
+            
+            }
+            List<Actor> fallingBoxes = cast.GetActors("fallingObjects");
+            if (fallingBoxes.Count < MAX_FALLING_BOXES)
+            {
+                Random random = new Random();
+                int p = random.Next(-100, 100);
+                FallingObject box = new FallingObject(p);
+                int x = random.Next(0, 60);
+                x *= 15;
+                box.SetPosition(new Point(x, 0));
+                box.SetText("0");
+                box.SetVelocity(new Point(0, 5));
+                int r = 255;
+                int g = 105;
+                int b = 180;
+                Color color = new Color(r, g, b);
+                box.SetColor(color);
+                cast.AddActor("fallingObjects", box);                
+
             }
         }
         
@@ -190,6 +212,12 @@ namespace Greed.Game.Directing
                             break;
                         case "O":
                             score.HitObject(-1);
+                            score.SetText(score.GetScoreMessage());
+                            break;
+                        case "0":
+                            Random random = new Random();
+                            int p = random.Next(-100, 100);
+                            score.HitObject(p);
                             score.SetText(score.GetScoreMessage());
                             break;
                     }
