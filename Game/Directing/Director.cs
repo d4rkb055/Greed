@@ -19,7 +19,7 @@ namespace Greed.Game.Directing
         private VideoService videoService = null;
         private int MAX_FALLING_ROCKS = 230;
         private int MAX_FALLING_GEMS = 230;
-        private int MAX_FALLING_BOXES = 20;
+        private int MAX_FALLING_BOXES = 200;
 
         private string mode;
 
